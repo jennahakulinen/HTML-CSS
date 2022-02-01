@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #croatia {
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+        .layer {
+            background-position: bottom center;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 100vh;
+            position: fixed;
+            /* position: relative;
+            background-attachment: fixed; */
+        }
+        .layer1 {
+            background-image: url(parallaksi/meribg.png);
+        }
+        .layer2 {
+            background-image: url(parallaksi/paatti.png);
+        }
+        .layer3 {
+            background-image: url(parallaksi/linna.png);
+        }
+        .layer4 {
+            background-image: url(parallaksi/kallio.png);
+        }
+        .layer5 {
+            background-image: url(parallaksi/kivi.png);
+        }
+        main {
+            color: white;
+            padding: 30px;
+            position: relative;
+            z-index: 100;
+            background-color: black;
+        }
+        #cooking {
+            width: 100%;
+            height: calc(100vh - 30px);
+            background-color: blueviolet;
+            background-image: url(parallax/tausta.jpeg);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-attachment: fixed;
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+        .pan {
+            position: absolute;
+            top: 15%;
+            left: 20%;
+            background-image: url(parallax/pannu2.png);
+            z-index: 3;
+            width: 700px;
+            height: 700px;
+        }
+        .egg {
+            position: absolute;
+            top: 30%;
+            left: 37%;
+            background-image: url(parallax/kananmuna.png);
+            z-index: 4;
+            width: 341px;
+            height: 454px;
+        }
+        #mouse, #mouse-center {
+            color: white;
+            width: 100px;
+            height: 100px;
+            border: 1px solid white;
+        }
+        #mouse-center {
+            position: absolute;
+            top: 140px;
+            right: 20px;
+            z-index: 3;
+        }
+        #mouse {
+            position: absolute;
+            top: 40px;
+            right: 20px;
+            z-index: 3;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="croatia">
+        <!-- position fixed -->
+        <div class="layer layer1" data-type="parallax" data-speed="10"></div>
+        <div class="layer layer2" data-type="parallax" data-speed="20"></div>
+        <div class="layer layer3" data-type="parallax" data-speed="30"></div>
+        <div class="layer layer4" data-type="parallax" data-speed="40"></div>
+        <div class="layer layer5" data-type="parallax" data-speed="50"></div>
+    </div>
+
+    <main>
+        <h1>Viikko 3 parallax -tehtävät</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias labore voluptas voluptates reiciendis veniam delectus, beatae voluptatem est excepturi libero! Qui velit, animi nemo dicta incidunt dolorum quis at voluptatibus.
+        Excepturi, cum explicabo exercitationem quia optio numquam voluptate ratione temporibus quasi at non distinctio voluptas voluptatum ipsum a ea libero reprehenderit odio possimus tenetur dolorum. Iure excepturi voluptate explicabo impedit.
+        Necessitatibus tempore doloremque beatae sed voluptatibus nam. Tenetur nobis incidunt aliquid cupiditate dignissimos, consectetur voluptates doloremque porro vitae tempora animi reprehenderit commodi modi. Eaque aliquam quasi, tempora blanditiis eligendi beatae.
+        Culpa, tempore iusto cumque saepe quasi vel blanditiis ad dicta porro voluptates sit veritatis est officiis, error ducimus quae laboriosam nam molestiae perspiciatis laborum alias quia. Corrupti veniam cumque adipisci.
+        Officiis libero autem et hic repellat architecto ducimus cumque dolor eligendi reprehenderit. Praesentium, nemo iure sit inventore reprehenderit, qui consequuntur accusamus, ducimus mollitia possimus magnam ex corporis. Sequi, consectetur recusandae.
+        Eveniet aspernatur placeat voluptate, quia facilis ex dolore ad numquam deserunt aut officiis omnis fuga reprehenderit inventore? Eos, minima itaque maxime neque optio, sint totam blanditiis fugiat deserunt, nostrum reiciendis?
+        Odit ut dicta eveniet necessitatibus vitae quo voluptatum porro vero commodi? Quo natus distinctio cumque, sapiente maxime eveniet excepturi accusamus minus. Id est veniam animi recusandae aliquam facere tempore ratione!</p>
+    
+        <h1>Mousemove parallax</h1>
+
+        <!-- position relative -->
+        <div id="cooking">
+            <!-- position absolute -->
+            <div class="pan"></div>
+            <div class="egg"></div>
+            <div id="mouse"></div><br>
+            <div id="mouse-center"></div>
+        </div>
+    </main>
+    
+    <script>
+        window.addEventListener('scroll', event => {
+
+            let topDistance = this.pageYOffset;
+            console.log(topDistance);
+
+            const layers = document.querySelectorAll("[data-type='parallax']");
+            let layer, speed, yPos;
+            for (let i = 0; i < layers.length; i++) {
+                layer = layers[i];
+                speed = layer.getAttribute('data-speed');
+                let yPos = -(topDistance * speed / 100);
+                layer.setAttribute('style', 'transform: translate3d(0px, ' + yPos + 'px, 0px)');
+            }
+        });
+
+        const croatia = document.querySelector('#croatia');
+        const mouseleftbox = document.querySelector('#mouse');
+        const mousecenterbox = document.querySelector('#mouse-center');
+        const pan = document.querySelector('.pan');
+        const egg = document.querySelector('.egg');
+
+        document.addEventListener('mousemove', event => {
+
+            // lasketaan keskipiste
+            let cx = croatia.clientWidth/2;
+            let cy = croatia.clientHeight/2;
+
+            console.log(event);
+
+            let mouseX = event.clientX;
+            let mouseY = event.clientY;
+
+            // hiiren liikkeet vasemmasta reunasta
+            let mouseposition = `Vasemmasta kulmasta <br> x:  ${mouseX} ja y: ${mouseY}`;
+            mouseleftbox.innerHTML = mouseposition;
+
+            //keksipisteen ja hiiren välinen ero pikseleissä
+            let from_center_x = cx - mouseX;
+            let from_center_y = cy - mouseY;
+
+            // hiiren liikkeet keskeltä
+            let mousecenterposition = `Keskeltä <br> x:  ${from_center_x} ja y: ${from_center_y}`;
+            mousecenterbox.innerHTML = mousecenterposition;
+
+            pan.style.transform = 'translateX(' + from_center_x/150 + '%) translateY(' + from_center_y/150 + '%)';
+            egg.style.transform = 'translateX(' + from_center_x/300 + '%) translateY(' + from_center_y/300 + '%)';
+
+            //Sama, kun ylhäällä, mutta tehty eri tavalla
+            // astronaut.setAttribute('style', 'transform: translate3d(' + from_center_x/50 + 'px, ' + from_center_y/100 + 'px, 0px)');
+            // shuttle.setAttribute('style', 'transform: translate3d(' + from_center_x/250 + 'px, ' + from_center_y/150 + 'px, 0px)');
+
+        });
+
+    </script>
+</body>
+</html>
