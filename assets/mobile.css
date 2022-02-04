@@ -8,7 +8,7 @@ label {
   display: none;
 }
 .fa-hamburger {
-  color: var(--acc-darkgreen);
+  color: var(--main-red);
 }
 @media screen and (max-width: 875px) {
   nav {

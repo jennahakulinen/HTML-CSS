@@ -1,7 +1,7 @@
 :root {
   --main-green: #1d781d;
   --main-red: #b50000;
-  --main-darkgrey: #343a40;
+  --main-darkgrey: #696969;
   --main-lightgrey: #dadfe1;
   --main-black: #000000;
   --main-white: #fefefe;
@@ -153,7 +153,7 @@ nav ul .search {
   background-image: url(img/black-frying-pan-with-spaghetti-sauce-near-brown-wooden-691114.webp);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: right center;
+  background-position: 200px;
 }
 
 .banner-h1 {
@@ -216,6 +216,7 @@ nav ul .search {
 .menu-logo img {
   width: 100%;
   padding-top: 35%;
+  cursor: pointer;
 }
 
 .location {
@@ -223,7 +224,7 @@ nav ul .search {
   width: 300px;
 }
 
-.location-h4 {
+.location-h2 {
   font-family: ravintola;
   font-size: 21px;
   margin: 5px 15px 15px 0;
@@ -247,11 +248,11 @@ nav ul .search {
 }
 
 .add-restaurant {
-  border: 1px dashed var(--main-lightgrey);
+  border: 1px dashed var(--main-darkgrey);
   font-family: leipateksti;
   font-size: 10px;
   font-weight: bold;
-  color: var(--main-lightgrey);
+  color: var(--main-darkgrey);
 }
 
 .add-restaurant p {
@@ -263,7 +264,7 @@ nav ul .search {
   width: 30px;
   text-align: center;
   border: none;
-  fill: var(--main-lightgrey);
+  fill: var(--main-darkgrey);
 }
 
 /* Buttons (for javascript task) */
