@@ -1,0 +1,130 @@
+html,
+body {
+  min-height: 100vh;
+  background-color: black;
+}
+
+main {
+  max-width: 800px;
+  margin: auto;
+  font-family: "Press Start 2P", cursive;
+  color: white;
+  text-align: center;
+}
+.duck1 {
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  top: 50px;
+  left: 10px;
+  background: url(img/sprite.png) no-repeat 0 -220px;
+  overflow: hidden;
+}
+
+.duckfly {
+  animation: duckfly1 0.5s steps(3) infinite, duck1move 4s linear forwards,
+    duck1fall 0.2s 4s 1, duck1down 1s 4.2s linear forwards;
+}
+
+.stage {
+  width: 800px;
+  height: 480px;
+  background: url(img/stage.png);
+  background-size: contain;
+  position: relative;
+  overflow: hidden;
+}
+.dog {
+  background: url(img/sprite.png) no-repeat;
+  width: calc(600px / 5);
+  height: 110px;
+  /* background-color: darkcyan; */
+
+  /* positiointi */
+  background-position: 0px 0px;
+  position: absolute;
+  bottom: 50px;
+  left: 0px;
+
+  /* animointi */
+  animation: doggowalk 0.5s steps(5) 6, doggomove 3s linear forwards,
+    doggosniff 0.5s steps(2) 3s 6, doggojump 1s steps(3) 5s 1,
+    doggosmile 1s steps(2) 6s 4;
+}
+@keyframes doggowalk {
+  0% {
+    background-position: 0px 0px;
+  }
+  100% {
+    background-position: -600px 0;
+  }
+}
+@keyframes doggomove {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 300px;
+  }
+}
+@keyframes doggosniff {
+  0% {
+    background-position: -360px 0px;
+  }
+  100% {
+    background-position: -600px 0;
+  }
+}
+@keyframes doggojump {
+  0% {
+    background-position: 0px -110px;
+    bottom: 50px;
+  }
+  100% {
+    background-position: -360px -110px;
+    bottom: 150px;
+  }
+}
+@keyframes doggosmile {
+  0% {
+    background-position: -360px -110px;
+    bottom: 100px;
+  }
+  100% {
+    background-position: -600px -110px;
+    bottom: 100px;
+  }
+}
+@keyframes duckfly1 {
+  0% {
+    background-position: 0px -220px;
+  }
+  100% {
+    background-position: -240px -220px;
+  }
+}
+@keyframes duck1move {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 730px;
+  }
+}
+@keyframes duck1fall {
+  0% {
+    background-position: 0px -460px;
+  }
+  100% {
+    background-position: 0px -460px;
+  }
+}
+@keyframes duck1down {
+  0% {
+    background-position: -80px -460px;
+  }
+  100% {
+    background-position: -80px -460px;
+    top: 330px;
+  }
+}
